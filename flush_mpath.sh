@@ -106,10 +106,7 @@ do
 				echo "${MPATH} does not exists but config entry in ${BINDINGS} exists"
 			fi
 		else
-			echo "${MPATH} is ok to remove" |tee -a ${TMP1}
-			echo "Removing only those marked as OK"
-			echo "Please press <RETURN> to proceed"
-			read
+			echo "${MPATH} is ok ,Checking against ASM Labels &Bindings " |tee -a ${TMP1}
 		fi
 done
 #
@@ -181,6 +178,9 @@ ls /dev/oracleasm/disks |xargs /etc/init.d/oracleasm querydisk -p -d |grep -iw $
 		fi
 	else
 	ASM_LABEL=`ls /dev/oracleasm/disks|xargs /etc/init.d/oracleasm querydisk -p |grep -w "$MPATH"p1|awk -F "\"" '{ print $2}'`
+	echo "*********************"
+	echo "*D  A  N  G  E  R   *"
+	echo "*********************"
 	echo "${MPATH}still does have ${ASM_LABEL}"
 fi
 done
