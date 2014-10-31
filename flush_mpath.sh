@@ -131,7 +131,7 @@ ls /dev/oracleasm/disks |xargs /etc/init.d/oracleasm querydisk -p -d |grep -iw $
 		#	sed -i.bak "/^${MPATH}/d" ${BINDINGS}
 			sed -i.bak "/\<$MPATH\>/d" ${BINDINGS}
 			${BLOCKDEV} --flushbufs /dev/mapper/${MPATH} > /dev/null 2>&1
-			${KPARTX} -d /dev/mapper/$MPATH
+			${DMSETUP} wipe_table ${MPATH}
 			if [ $? -eq 0 ]
 				then
 				${MULTIPATH} -f ${MPATH} > /dev/null 2>&1
